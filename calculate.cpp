@@ -7,17 +7,17 @@ namespace bullpgia{
 
 calculate:: string calculateBullAndPgia(string choice, string guess){
         
-	if(chosen == null){
+	if(choice == NULL){
 		throw new NullPointerException("\"chosen\" may not be null");
 	}
-	if(guess == null){
+	if(guess == NULL){
 		throw new NullPointerException("\"guess\" may not be null");
 	}
 	
 	//get the bulls
-	int bulls = getNumExactCharMatches(chose, guess);
+	int bulls = getNumExactCharMatches(choice, guess);
 	//get the cows
-	int cows = getNumSimilarChars(chose, guess) - bulls;
+	int cows = getNumSimilarChars(choice, guess) - bulls;
 
 	//output
         string s = "";
@@ -28,11 +28,11 @@ calculate:: string calculateBullAndPgia(string choice, string guess){
         return s;
 }
 
-calculate:: int getNumExactCharMatches(string chosen, string guess){
+calculate:: int getNumExactCharMatches(string choice, string guess){
 	int count = 0;
 	int index = 0;
-	while(index < chosen.length() && index < guess.length()){
-		if(chosen.charAt(index) == guess.charAt(index)){
+	while(index < choice.length() && index < guess.length()){
+		if(choice.charAt(index) == guess.charAt(index)){
 			count++;
 		}
 		index++;
@@ -40,8 +40,8 @@ calculate:: int getNumExactCharMatches(string chosen, string guess){
 	return count;
 }
 
-calculate:: int getNumSimilarChars(string chosen, string guess){
-	int* p1Counts = getCharCounts(chosen);
+calculate:: int getNumSimilarChars(string choice, string guess){
+	int* p1Counts = getCharCounts(choice);
 	int* p2Counts = getCharCounts(guess);
 	int count = 0;
 	for(int i = 0; i < 9; i++){

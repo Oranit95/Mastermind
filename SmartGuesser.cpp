@@ -1,10 +1,13 @@
-#pragma once
 #include "SmartGuesser.hpp"
-using namespace std;
-namespace bullpgia{
+#include "Guesser.hpp"
+#include <string>
+using std::string;
 
-SmartGuesser:: virtual string guess(){
 
+string bullpgia::SmartGuesser::guess() {
+ return "";
 }
-
-};
+void bullpgia::SmartGuesser::startNewGame(uint length){
+}
+void bullpgia::SmartGuesser::learn(string reply){
+}

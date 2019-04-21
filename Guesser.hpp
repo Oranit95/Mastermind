@@ -1,9 +1,17 @@
 #pragma once
-using namespace std;
+#include <string>
+using std::string;
 namespace bullpgia{
 
 class Guesser{
- virtual string guess();
+ protected:
+ uint length;
+ string reply;
+ 
+ public:
+ virtual string guess()=0;
+ virtual void startNewGame(uint length){};
+ virtual void learn(string reply){};
 
 };
-};
+}

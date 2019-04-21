@@ -1,8 +1,16 @@
 #pragma once
-using namespace std;
+#include "Guesser.hpp"
+#include "calculate.hpp"
+#include <string>
+using std::string;
+
 namespace bullpgia{
 
-class SmartGuesser{
- virtual string guess();
+class SmartGuesser: public bullpgia::Guesser{
+
+   public:
+   string guess() override;
+   void startNewGame(uint length) override;
+   void learn(string reply) override;
 };
-};
+}

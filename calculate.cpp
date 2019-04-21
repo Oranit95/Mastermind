@@ -1,17 +1,18 @@
 #include <cstdio>
-#include <string.h>
+#include <string>
+#include <iostream>
+#include <math.h>
 #include "calculate.hpp"
 
-using namespace std;
 namespace bullpgia{
 
-calculate:: string calculateBullAndPgia(string choice, string guess){
+  string calculateBullAndPgia(string choice, string guess){
         
-	if(choice == NULL){
-		throw new NullPointerException("\"chosen\" may not be null");
+	if(choice == ""){
+		throw std::invalid_argument( "The string is empty" );
 	}
-	if(guess == NULL){
-		throw new NullPointerException("\"guess\" may not be null");
+	if(guess == ""){
+		throw std::invalid_argument( "The string is empty"  );
 	}
 	
 	//get the bulls
@@ -21,42 +22,44 @@ calculate:: string calculateBullAndPgia(string choice, string guess){
 
 	//output
         string s = "";
-        s = s + bulls;
-        s = s + ",";
-        s = s + cows;
+       // s << bulls << "," << cows;
+
         //cout << s << endl;
         return s;
-}
+ }
 
-calculate:: int getNumExactCharMatches(string choice, string guess){
+  int getNumExactCharMatches(string choice, string guess){
 	int count = 0;
 	int index = 0;
 	while(index < choice.length() && index < guess.length()){
-		if(choice.charAt(index) == guess.charAt(index)){
+		if(choice[index] == guess[index]){
 			count++;
 		}
 		index++;
 	}
 	return count;
-}
+ }
 
-calculate:: int getNumSimilarChars(string choice, string guess){
+  int getNumSimilarChars(string choice, string guess){
 	int* p1Counts = getCharCounts(choice);
 	int* p2Counts = getCharCounts(guess);
 	int count = 0;
 	for(int i = 0; i < 9; i++){
-		count+= Math.min(p1Counts[i], p2Counts[i]);
+		count+= min(p1Counts[i], p2Counts[i]);
 	}
 	return count;
-}
+ }
 
-calculate:: int* getCharCounts(string str){
+  int* getCharCounts(string str){
 	int* counts = new int[9];
-	char* chars = str.getCharArray();
-	for(int i = 0; i < chars.length; i++){
-		counts[chars[i]]++;
+	int* copy = new int [str.length()];
+        for(int i = 0; i < str.length(); i++){
+         copy[i] = str[i];
+        }
+	for(int i = 0; i < str.length(); i++){
+		counts[copy[i]]++;
 	}
 	return counts;
-}
+ }
 
-};
+}

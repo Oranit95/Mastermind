@@ -22,6 +22,8 @@ int main() {
 
 	badkan::TestCase testcase;
 	int grade=0;
+        int wrong=0;
+        int right=0;
 	int signal = setjmp(badkan::longjmp_buffer);
 	if (signal == 0) {
 
@@ -52,11 +54,12 @@ int main() {
 // OUR TESTS
 		ConstantChooser c4567{"4567"}, c25478{"25478"}, c3321{"3321"}, c234787{"234787"}, c5555{"5555"}, c2345{"2345"}, c23456{"23456"},
                                 c2234{"2234"}, c0246{"0246"}, c1357{"1357"}, c24680{"24680"}, c2332{"2332"}, c11111{"11111"}, c13578{"13578"},
-                                c02468{"02468"}, c12346{"12346"}, c123123{"123123"}, c012345{"012345"};
+                                c02468{"02468"}, c12346{"12346"}, c123123{"123123"}, c012345{"012345"}, c0{"0"}, c12{"12"}, c123{"123"};
 
 		ConstantGuesser g4567{"4567"}, g25478{"25478"}, g3321{"3321"}, g5555{"5555"}, g2345{"2345"}, g1111{"1111"}, g23456{"23456"},
                                 g2234{"2234"}, g02468{"02468"}, g1357{"1357"}, g2468{"2468"}, g2332{"2332"}, g11111{"11111"}, g13578{"13578"},
-                                g024680{"024680"}, g123456{"123456"}, g1231231{"1231231"}, g0123456{"0123456"}, g234787{"234787"};
+                                g024680{"024680"}, g123456{"123456"}, g1231231{"1231231"}, g0123456{"0123456"}, g234787{"234787"},
+                                g0{"0"}, g12{"12"}, g123{"123"},g00{"00"},g22345{"22345"};
 
 		testcase.setname("Calculate bull and pgia")
 		.CHECK_OUTPUT(calculateBullAndPgia("4567","4589"), "2,0")      // 2 bull, 0 pgia
@@ -109,6 +112,15 @@ int main() {
 		.CHECK_OUTPUT(calculateBullAndPgia("0099","1122"), "0,0")      // 0 bull, 0 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("0023","0045"), "2,0")      // 2 bull, 0 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("0023","0026"), "3,0")      // 3 bull, 0 pgia
+                .CHECK_OUTPUT(calculateBullAndPgia("1","1"), "1,0")      // 1 bull, 0 pgia
+                .CHECK_OUTPUT(calculateBullAndPgia("12","21"), "0,2")      // 0 bull, 2 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("345","543"), "1,2")      // 1 bull, 2 pgia
+                .CHECK_OUTPUT(calculateBullAndPgia("09","01"), "1,0")      // 1 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("77","77"), "2,0")      // 2 bull, 0 pgia
+                .CHECK_OUTPUT(calculateBullAndPgia("089","098"), "1,2")      // 1 bull, 2 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("012","012"), "3,0")      // 3 bull, 0 pgia
+                .CHECK_OUTPUT(calculateBullAndPgia("345","121"), "0,0")      // 0 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("0","1"), "0,0")      // 0 bull, 0 pgia
 		;
 
 		testcase.setname("Play with dummy choosers and guessers")
@@ -120,15 +132,22 @@ int main() {
                 .CHECK_EQUAL(play(c23456, g23456, 5, 100), 1)      // guesser wins in one turn.
                 .CHECK_EQUAL(play(c1357, g1357, 4, 30), 1)      // guesser wins in one turn.
                 .CHECK_EQUAL(play(c11111, g11111, 5, 100), 1)      // guesser wins in one turn.
+                .CHECK_EQUAL(play(c12, g12, 2, 100), 1)      // guesser wins in one turn.
+                .CHECK_EQUAL(play(c0, g0, 1, 100), 1)      // guesser wins in one turn.
+                .CHECK_EQUAL(play(c123, g123, 3, 30), 1)      // guesser wins in one turn.
+                
 
-		.CHECK_EQUAL(play(c4567, g25478, 4, 100), 102)   // guesser loses technically by making an illegal guess (too long).
-		.CHECK_EQUAL(play(c5555, g234787, 4, 100), 102)   // guesser loses technically by making an illegal guess (too long).
-		.CHECK_EQUAL(play(c1357, g13578, 4, 100), 102)   // guesser loses technically by making an illegal guess (too long).
+		.CHECK_EQUAL(play(c4567, g25478, 4, 100), 101)   // guesser loses technically by making an illegal guess (too long).
+		.CHECK_EQUAL(play(c5555, g234787, 4, 100), 101)   // guesser loses technically by making an illegal guess (too long).
+		.CHECK_EQUAL(play(c1357, g13578, 4, 100), 101)   // guesser loses technically by making an illegal guess (too long).
 		.CHECK_EQUAL(play(c0246, g02468, 4, 100), 101)   // guesser loses technically by making an illegal guess (too long).
                 .CHECK_EQUAL(play(c02468, g024680, 5, 100), 101)   // guesser loses technically by making an illegal guess (too long).
 		.CHECK_EQUAL(play(c12346, g123456, 5, 100), 101)   // guesser loses technically by making an illegal guess (too long).
 		.CHECK_EQUAL(play(c123123, g1231231, 6, 100), 101)   // guesser loses technically by making an illegal guess (too long).
 		.CHECK_EQUAL(play(c012345, g0123456, 6, 100), 101)   // guesser loses technically by making an illegal guess (too long).
+                .CHECK_EQUAL(play(c123, g1234, 3, 100), 101)   // guesser loses technically by making an illegal guess (too long).
+		.CHECK_EQUAL(play(c0, g00, 1, 100), 101)   // guesser loses technically by making an illegal guess (too long).
+		.CHECK_EQUAL(play(c12, g123, 2, 100), 101)   // guesser loses technically by making an illegal guess (too long).
 
 		.CHECK_EQUAL(play(c25478, g3321, 4, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
 		.CHECK_EQUAL(play(c234787, g4567, 4, 100), 0)  // chooser loses technically by choosing an illegal number (too long).
@@ -137,8 +156,11 @@ int main() {
 		.CHECK_EQUAL(play(c13578, g1357, 4, 50), 0)     // chooser loses technically by choosing an illegal number (too long).
 		.CHECK_EQUAL(play(c11111, g1111, 4, 100), 0)  // chooser loses technically by choosing an illegal number (too long).
 		.CHECK_EQUAL(play(c24680, g2468, 4, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
-                .CHECK_EQUAL(play(c123123, g2234, 5, 100), 0)  // chooser loses technically by choosing an illegal number (too long).
-		.CHECK_EQUAL(play(c012345, g2234, 5, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
+                .CHECK_EQUAL(play(c123123, g22345, 5, 100), 0)  // chooser loses technically by choosing an illegal number (too long).
+		.CHECK_EQUAL(play(c012345, g22345, 5, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
+                .CHECK_EQUAL(play(c12, g0, 1, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
+                .CHECK_EQUAL(play(c123, g12, 2, 100), 0)  // chooser loses technically by choosing an illegal number (too long).
+		.CHECK_EQUAL(play(c0, g123, 3, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
                 
 		.CHECK_EQUAL(play(c2345, g2345, 4, 30), 31)    // guesser loses by running out of turns 
 		.CHECK_EQUAL(play(c5555, g5555, 4, 60), 61)    // guesser loses by running out of turns 
@@ -147,6 +169,9 @@ int main() {
 		.CHECK_EQUAL(play(c11111, g11111, 4, 70), 71)    // guesser loses by running out of turns 
 		.CHECK_EQUAL(play(c4567, g3321, 4, 90), 91)    // guesser loses by running out of turns 
 		.CHECK_EQUAL(play(c3321, g4567, 4, 50), 51)    // guesser loses by running out of turns
+                .CHECK_EQUAL(play(c0, g0, 1, 50), 51)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c12, g12, 2, 90), 91)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c123, g123, 3, 70), 71)    // guesser loses by running out of turns
 		;
 
 		testcase.setname("Play with smart guesser");
@@ -181,10 +206,12 @@ int main() {
 		}
 		
     grade = testcase.grade();
+    wrong= testcase.wrong();
+    right= testcase.right();
 	} else {
 		testcase.print_signal(signal);
 		grade = 0;
 	}
-	cout << "Your grade is: "  << grade << endl;
+	cout <<"Your grade is: "  << grade<<" "<<"Wrong: "<< wrong<< " "<<"Right: "<<right<< " "<< endl;
 	return 0;
 }

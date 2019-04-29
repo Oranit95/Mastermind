@@ -59,7 +59,7 @@ int main() {
 		ConstantGuesser g4567{"4567"}, g25478{"25478"}, g3321{"3321"}, g5555{"5555"}, g2345{"2345"}, g1111{"1111"}, g23456{"23456"},
                                 g2234{"2234"}, g02468{"02468"}, g1357{"1357"}, g2468{"2468"}, g2332{"2332"}, g11111{"11111"}, g13578{"13578"},
                                 g024680{"024680"}, g123456{"123456"}, g1231231{"1231231"}, g0123456{"0123456"}, g234787{"234787"},
-                                g0{"0"}, g12{"12"}, g123{"123"},g00{"00"},g22345{"22345"};
+                                g0{"0"}, g12{"12"}, g123{"123"},g00{"00"},g22345{"22345"},g1358{"1358"},  g1{"1"}, g22{"22"}, g124{"124"};
 
 		testcase.setname("Calculate bull and pgia")
 		.CHECK_OUTPUT(calculateBullAndPgia("4567","4589"), "2,0")      // 2 bull, 0 pgia
@@ -162,16 +162,16 @@ int main() {
                 .CHECK_EQUAL(play(c123, g12, 2, 100), 0)  // chooser loses technically by choosing an illegal number (too long).
 		.CHECK_EQUAL(play(c0, g123, 3, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
                 
-		.CHECK_EQUAL(play(c2345, g2345, 4, 30), 31)    // guesser loses by running out of turns 
-		.CHECK_EQUAL(play(c5555, g5555, 4, 60), 61)    // guesser loses by running out of turns 
-		.CHECK_EQUAL(play(c2332, g2332, 4, 60), 61)    // guesser loses by running out of turns 
-		.CHECK_EQUAL(play(c1357, g1357, 4, 30), 31)    // guesser loses by running out of turns 
-		.CHECK_EQUAL(play(c11111, g11111, 4, 70), 71)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c2345, g5555, 4, 30), 31)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c5555, g2345, 4, 60), 61)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c2332, g2345, 4, 60), 61)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c1357, g1358, 4, 30), 31)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c11111, g12345, 4, 70), 71)    // guesser loses by running out of turns 
 		.CHECK_EQUAL(play(c4567, g3321, 4, 90), 91)    // guesser loses by running out of turns 
 		.CHECK_EQUAL(play(c3321, g4567, 4, 50), 51)    // guesser loses by running out of turns
-                .CHECK_EQUAL(play(c0, g0, 1, 50), 51)    // guesser loses by running out of turns 
-		.CHECK_EQUAL(play(c12, g12, 2, 90), 91)    // guesser loses by running out of turns 
-		.CHECK_EQUAL(play(c123, g123, 3, 70), 71)    // guesser loses by running out of turns
+                .CHECK_EQUAL(play(c0, g1, 1, 50), 51)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c12, g22, 2, 90), 91)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c123, g124, 3, 70), 71)    // guesser loses by running out of turns
 		;
 
 		testcase.setname("Play with smart guesser");

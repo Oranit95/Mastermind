@@ -68,7 +68,7 @@ int main() {
 		.CHECK_OUTPUT(calculateBullAndPgia("1235","1235"), "4,0")      // 4 bull, 0 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("1212","1213"), "3,0")      // 3 bull, 0 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("3456","1789"), "0,0")      // 0 bull, 0 pgia
-                .CHECK_OUTPUT(calculateBullAndPgia("2468","2569"), "0,2")      // 0 bull, 2 pgia
+                .CHECK_OUTPUT(calculateBullAndPgia("2468","2569"), "2,0")      // 2 bull, 0 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("1635","1653"), "2,2")      // 2 bull, 2 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("2345","2345"), "4,0")      // 4 bull, 0 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("2345","2354"), "2,2")      // 2 bull, 2 pgia
@@ -78,9 +78,9 @@ int main() {
 		.CHECK_OUTPUT(calculateBullAndPgia("3456","1789"), "0,0")      // 0 bull, 0 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("2469","2468"), "3,0")      // 3 bull, 0 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("1667","1653"), "2,0")      // 2 bull, 0 pgia
-                .CHECK_OUTPUT(calculateBullAndPgia("1635","1113"), "2,2")      // 2 bull, 2 pgia
+                .CHECK_OUTPUT(calculateBullAndPgia("1635","1113"), "1,1")      // 1 bull, 1 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("5555","5545"), "3,0")      // 3 bull, 0 pgia
-		.CHECK_OUTPUT(calculateBullAndPgia("2545","5254"), "2,2")      // 2 bull, 2 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("2545","5254"), "0,4")      // 0 bull, 4 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("0101","0010"), "1,2")      // 1 bull, 2 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("1789","1789"), "4,0")      // 4 bull, 0 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("1536","1563"), "2,2")      // 2 bull, 2 pgia
@@ -99,10 +99,10 @@ int main() {
 		.CHECK_OUTPUT(calculateBullAndPgia("2389","9382"), "2,2")      // 2 bull, 2 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("0987","7890"), "0,4")      // 0 bull, 4 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("9867","9876"), "2,2")      // 2 bull, 2 pgia
-                .CHECK_OUTPUT(calculateBullAndPgia("4569","4563"), "2,0")      // 2 bull, 0 pgia
-		.CHECK_OUTPUT(calculateBullAndPgia("3345","2234"), "0,0")      // 0 bull, 0 pgia
+                .CHECK_OUTPUT(calculateBullAndPgia("4569","4563"), "3,0")      // 0 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("3345","2234"), "0,2")      // 0 bull, 2 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("2445","2444"), "3,0")      // 3 bull, 0 pgia
-		.CHECK_OUTPUT(calculateBullAndPgia("1656","1645"), "2,0")      // 2 bull, 0 pgia
+		.CHECK_OUTPUT(calculateBullAndPgia("1656","1645"), "2,1")      // 2 bull, 0 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("1365","1563"), "2,2")      // 2 bull, 2 pgia
                 .CHECK_OUTPUT(calculateBullAndPgia("2222","2221"), "3,0")      // 3 bull, 0 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("2698","8692"), "2,2")      // 2 bull, 2 pgia

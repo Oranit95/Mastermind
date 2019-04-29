@@ -7,8 +7,8 @@
 namespace bullpgia{
 
   string calculateBullAndPgia(string choice, string guess){
-        
-	if(choice == ""){
+
+        if(choice == ""){
 		throw std::invalid_argument( "The string is empty" );
 	}
 	if(guess == ""){
@@ -20,11 +20,8 @@ namespace bullpgia{
 	//get the cows
 	int cows = getNumSimilarChars(choice, guess) - bulls;
 
-	//output
+       //output
         string s = "";
-       // s << bulls << "," << cows;
-
-        //cout << s << endl;
         return s;
  }
 
@@ -47,19 +44,17 @@ namespace bullpgia{
 	for(int i = 0; i < 9; i++){
 		count+= min(p1Counts[i], p2Counts[i]);
 	}
+
 	return count;
  }
 
   int* getCharCounts(string str){
-	int* counts = new int[9];
-	int* copy = new int [str.length()];
-        for(int i = 0; i < str.length(); i++){
-         copy[i] = str[i];
-        }
-	for(int i = 0; i < str.length(); i++){
-		counts[copy[i]]++;
-	}
-	return counts;
- }
 
+     int a = 2;
+     int *counts = &a;
+       
+	return counts;
+        
+        
+  }
 }

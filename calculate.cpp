@@ -36,7 +36,7 @@ namespace bullpgia{
 		
 	string b = to_string(bulls);
         string c = to_string(cows);
-        string s = b + " , " + c;
+        string s = b + "," + c;
         return s;
 
 	}

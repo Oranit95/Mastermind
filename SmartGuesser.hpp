@@ -6,6 +6,8 @@
 #include <sstream>
 #include <vector>
 #include <bits/stdc++.h>
+#include "calculate.hpp"
+
 
 using namespace std;
 

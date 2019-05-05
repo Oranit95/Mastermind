@@ -30,12 +30,14 @@ bullpgia::SmartGuesser::SmartGuesser(){
    for(int l = 0; l<4; l++) guessArray[l]=0;
    indexArray=0;
    resIndex=0;
-   notPermuted=true;
+   notPermuted=true; 
+   bulls=0;
+   cows=0;
 }
 
 string bullpgia::SmartGuesser::guess() {
 //updating the results from the previous guess first, if we havn't got all the chars yet
-cout<<"this is bulls:    "<<bulls<<"  this is cow:    "<<cows<<endl;
+cout<<"this is bulls:    "<<bulls<<endl<<"  this is cow:    "<<cows<<endl;
  if(numChar<length) saveResults();
 
  if(i<9&&numChar<length){//trying 1111, 2222, till 9999
@@ -46,15 +48,15 @@ cout<<"this is bulls:    "<<bulls<<"  this is cow:    "<<cows<<endl;
 	firstGuess+=firstGuess;
 	j++;
    }
-   numChar++;
+cout<<"this is FIRSTGUESS:  "<< firstGuess<<endl;
    return firstGuess;
  }
  //take the guess array and convert it to string according to it's size
   for(int m = 0; m<length;m++){
 	gues+=std::to_string(guessArray[m]);
-	cout<<"this is gues array number :"<<m<<"     "<< guessArray[m]<<endl;
+	//cout<<"this is gues array number :"<<m<<"     "<< guessArray[m]<<endl;
  }
-cout<<"THIS IS GUESS:"<<gues<<endl;
+//cout<<"THIS IS GUESS:"<<gues<<endl;
 //send it to permute
   if(notPermuted&&numChar==length){
   	permute(gues, "");
@@ -72,7 +74,7 @@ void bullpgia::SmartGuesser::permute(string str, string out)
     if (str.size() == 0) 
     { 
         guessVec.push_back(out); 
-	cout<<out<<endl;
+	//cout<<"this is out:   "<<out<<endl;
         return; 
     } 
   
@@ -95,15 +97,13 @@ void bullpgia::SmartGuesser::saveResults(){
 
  int k = 0;
  while(k<bulls){
-	guessArray[indexArray] = i;
-	indexArray++;
+	guessArray[indexArray++] = i;
 	k++;
 	numChar++;
  }
  k=0;
  while(k<cows){
-	guessArray[indexArray]= i;
-	indexArray++;
+	guessArray[indexArray++]= i;
 	k++;
 	numChar++;
  }
@@ -114,13 +114,17 @@ void bullpgia::SmartGuesser::saveResults(){
 void bullpgia::SmartGuesser::startNewGame(uint slength){
 	if(slength<=4)
 	  length=slength;
+        guessVec.clear();
+	gues="";
+	bulls=0;
+	cows=0;
 	
 
 }
 void bullpgia::SmartGuesser::learn(string reply){
- 	cout<<"this is the answear from calculate:     "<<reply<<endl;
-    int sign= reply.find(",");
-    bulls = stod(reply.substr(0,sign));
-    cows = stod(reply.substr(sign+1,reply.length()-1));
+  // cout<<"this is reply:  "<<reply<<endl;
+    int sign= reply.find(',');
+    bulls = stoi(reply.substr(0,sign));
+    cows = stoi(reply.substr(sign+1,reply.length()));
 
 }

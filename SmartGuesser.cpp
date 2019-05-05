@@ -118,7 +118,7 @@ void bullpgia::SmartGuesser::startNewGame(uint slength){
 
 }
 void bullpgia::SmartGuesser::learn(string reply){
- 
+ 	cout<<"this is the answear from calculate:     "<<reply<<endl;
     int sign= reply.find(",");
     bulls = stod(reply.substr(0,sign));
     cows = stod(reply.substr(sign+1,reply.length()-1));

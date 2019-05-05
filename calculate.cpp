@@ -16,12 +16,12 @@ namespace bullpgia{
 		
 	//for the string selected by chooser
 	for( int i = 0; i < choice.length(); i++ ){
-		int runnerInt = choice[i];
+		char runnerInt = choice[i];
 		cout<<"runnerInt "<<runnerInt<<endl;
 			
 		
 		for( int j = 0; j < guess.length(); j++ ){
-			int guessInt = guess[j];
+			char guessInt = guess[j];
 			cout<<"guessInt "<<guessInt<<endl;	
 				
 			if( runnerInt == guessInt){

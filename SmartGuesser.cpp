@@ -48,7 +48,7 @@ cout<<"this is bulls:    "<<bulls<<endl<<"  this is cow:    "<<cows<<endl;
 	firstGuess+=firstGuess;
 	j++;
    }
-cout<<"this is FIRSTGUESS:  "<< firstGuess<<endl;
+cout<<"this is FIRSTGUESS:  "<< firstGuess<<" this is LENGTH: " << length<<endl;
    return firstGuess;
  }
  //take the guess array and convert it to string according to it's size

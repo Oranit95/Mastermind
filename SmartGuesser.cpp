@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <bits/stdc++.h>
+#include "calculate.hpp"
 
 using namespace std;
 
@@ -44,6 +45,7 @@ string bullpgia::SmartGuesser::guess() {
 	firstGuess+=firstGuess;
 	j++;
    }
+   numChar++;
    return firstGuess;
  }
  //take the guess array and convert it to string according to it's size
@@ -55,7 +57,9 @@ string bullpgia::SmartGuesser::guess() {
   	permute(gues, "");
 	notPermuted=false;
   }
-  return guessVec.at(resIndex++);
+  if(resIndex<guessVec.size()) return guessVec.at(resIndex++);
+  return "";
+
 }
 
 void bullpgia::SmartGuesser::permute(string str, string out) 
@@ -81,33 +85,7 @@ void bullpgia::SmartGuesser::permute(string str, string out)
         rotate(str.begin(), str.begin() + 1, str.end()); 
     } 
 } 
-/**
-void bullpgia::SmartGuesser::swap(char *x, char *y)  
-{  
-    char temp;  
-    temp = *x;  
-    *x = *y;  	
-    *y = temp;  
-}  
-//creates all the possible permutation of a string, copied from geeksforgeeks(link in readme)
-void bullpgia::SmartGuesser::permute(int l, int r)  
-{  
-    string tempGuess;a
-    int index;  
-    if (l == r)  {
-	guessVec.push_back(tempGuess(gues));
-    }  
-    else
-    {  
-        for (index = l; index <= r; index++)  
-        {  
-            swap((gues+l), (gues+index));  
-            permute(l+1, r);  
-            swap((gues+l), (gues+index)); //backtrack  
-        }  
-    }  
-}
-**/
+
 //updating the resultes from bull and pgia
 void bullpgia::SmartGuesser::saveResults(){
 

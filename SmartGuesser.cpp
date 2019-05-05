@@ -35,6 +35,7 @@ bullpgia::SmartGuesser::SmartGuesser(){
 
 string bullpgia::SmartGuesser::guess() {
 //updating the results from the previous guess first, if we havn't got all the chars yet
+cout<<"this is bulls:    "<<bulls<<"  this is cow:    "<<cows<<endl;
  if(numChar<length) saveResults();
 
  if(i<9&&numChar<length){//trying 1111, 2222, till 9999
@@ -51,13 +52,15 @@ string bullpgia::SmartGuesser::guess() {
  //take the guess array and convert it to string according to it's size
   for(int m = 0; m<length;m++){
 	gues+=std::to_string(guessArray[m]);
+	cout<<"this is gues array number :"<<m<<"     "<< guessArray[m]<<endl;
  }
+cout<<"THIS IS GUESS:"<<gues<<endl;
 //send it to permute
-  if(notPermuted){
+  if(notPermuted&&numChar==length){
   	permute(gues, "");
 	notPermuted=false;
   }
-  if(resIndex<guessVec.size()) return guessVec.at(resIndex++);
+  if(resIndex<guessVec.size()&&numChar==length) return guessVec.at(resIndex++);
   return "";
 
 }
@@ -69,6 +72,7 @@ void bullpgia::SmartGuesser::permute(string str, string out)
     if (str.size() == 0) 
     { 
         guessVec.push_back(out); 
+	cout<<out<<endl;
         return; 
     } 
   

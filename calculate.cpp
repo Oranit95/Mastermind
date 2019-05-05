@@ -33,13 +33,14 @@ namespace bullpgia{
 			}
 		}
 	}
-		
+		cout<<"bulls before: "<<bulls<<endl;
+	    cout<<"cows before: "<<cows<<endl;
 	string b = to_string(bulls);
-	  cout<<"BULLS ARE"<<b<<endl;
+	  cout<<"BULLS ARE "<<b<<endl;
         string c = to_string(cows);
-	  cout<<"COWS ARE"<<c<<endl;
+	  cout<<"COWS ARE "<<c<<endl;
         string s = b + "," + c;
-	  cout<<"String is"<<s<<endl;
+	  cout<<"String is "<<s<<endl;
         return s;
 
 	}

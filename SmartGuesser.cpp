@@ -40,8 +40,8 @@ bullpgia::SmartGuesser::SmartGuesser(){
 string bullpgia::SmartGuesser::guess() {
 //updating the results from the previous guess first, if we havn't got all the chars yet
 cout<<"this is bulls:    "<<bulls<<endl<<"  this is cow:    "<<cows<<endl;
- if(numChar<length) saveResults();
 
+//cout<<i<<endl;
  if(i<9&&numChar<length){//trying 1111, 2222, till 9999
    i++;
    string firstGuess = std::to_string(i);
@@ -87,7 +87,10 @@ void bullpgia::SmartGuesser::permute(string str, string out)
     // permutation (length of out is n) 
     if (str.size() == 0) 
     { 
-        guessVec.push_back(out); 
+      if (std::find(guessVec.begin(), guessVec.end(), out) == guessVec.end())
+	{
+	     guessVec.push_back(out); 
+	}
         return; 
     } 
   
@@ -107,12 +110,10 @@ void bullpgia::SmartGuesser::permute(string str, string out)
 
 //updating the resultes from bull and pgia
 void bullpgia::SmartGuesser::saveResults(){
-
  int k = 0;
  while(k<bulls){
 cout<<"THIS IS BULLS: " <<i<<endl;
 	guessArray[indexArray++] = i;
-
 	k++;
 	numChar++;
  }
@@ -133,12 +134,13 @@ void bullpgia::SmartGuesser::startNewGame(uint slength){
 	bulls=0;
 	cows=0;
 	resIndex=0;
-   	i=-1;
+   	//i=-1;
 }
 void bullpgia::SmartGuesser::learn(string reply){
   // cout<<"this is reply:  "<<reply<<endl;
     int sign= reply.find(',');
     bulls = stoi(reply.substr(0,sign));
     cows = stoi(reply.substr(sign+1,reply.length()));
+    if(numChar<length) saveResults();
 
 }

@@ -31,9 +31,7 @@ bullpgia::SmartGuesser::SmartGuesser(){
 
 string bullpgia::SmartGuesser::guess() {
 //updating the results from the previous guess first, if we havn't got all the chars yet
-//cout<<"this is bulls:    "<<bulls<<endl<<"  this is cow:    "<<cows<<endl;
 
-//cout<<i<<endl;
  if(i<9&&numChar<length){//trying 1111, 2222, till 9999
    i++;
    string firstGuess = std::to_string(i);
@@ -42,7 +40,7 @@ string bullpgia::SmartGuesser::guess() {
 	firstGuess+=std::to_string(i);
 	j++;
    }
-//cout<<"this is FIRSTGUESS:  "<< firstGuess<<" this is LENGTH: " << length<<endl;
+
    return firstGuess;
  }
 	gues="";
@@ -50,25 +48,18 @@ if(numChar==length){
  //take the guess array and convert it to string according to it's size
   for(int m = 0; m<length;m++){
 	gues+=std::to_string(guessArray[m]);
-//	cout<<"this is gues array number :"<<m<<"     "<< guessArray[m]<<endl;
  }
 	numChar++;
 }
 
-//cout<<"THIS IS GUESS:"<<gues<<endl;
 //send it to permute
   if(notPermuted&&numChar==length+1){
   	permute(gues, "");
 	notPermuted=false;
-	//cout<<"THIS IS GUESSVEC SIZE "<< guessVec.size()<<endl;
   }
   if(resIndex<guessVec.size()&&numChar==length+1) {
-  //cout<<"this is the guess AFTER PERMUTE number  "<<resIndex<<"  and the guess IS  "<<guessVec.at(resIndex)<<endl;
   return guessVec.at(resIndex++);
 }
-//cout<<"this is numChar "<< numChar<<" this is length : "<<length<<endl;
-//cout<<"this is resIndex " <<resIndex<< " this is guessVecSize " << guessVec.size()<<endl;
-//cout<<"EMPTY STRING"<<endl;
   return "";
 
 }
@@ -104,14 +95,12 @@ void bullpgia::SmartGuesser::permute(string str, string out)
 void bullpgia::SmartGuesser::saveResults(){
  int k = 0;
  while(k<bulls){
-//cout<<"THIS IS BULLS: " <<i<<endl;
 	guessArray[indexArray++] = i;
 	k++;
 	numChar++;
  }
  k=0;
  while(k<cows){
-//cout<<"THIS IS COWS: " <<i<<endl;
 	guessArray[indexArray++]= i;
 	k++;
 	numChar++;
@@ -133,7 +122,6 @@ void bullpgia::SmartGuesser::startNewGame(uint slength){
 	
 }
 void bullpgia::SmartGuesser::learn(string reply){
-  // cout<<"this is reply:  "<<reply<<endl;
     int sign= reply.find(',');
     bulls = stoi(reply.substr(0,sign));
     cows = stoi(reply.substr(sign+1,reply.length()));

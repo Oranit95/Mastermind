@@ -57,13 +57,14 @@ if(numChar==length){
   	permute(gues, "");
 	notPermuted=false;
   }
+	//try one at a time from guessVec
   if(resIndex<guessVec.size()&&numChar==length+1) {
   return guessVec.at(resIndex++);
 }
   return "";
 
 }
-
+//calculate all permutations of the string str, and adds them to guessVec
 void bullpgia::SmartGuesser::permute(string str, string out) 
 { 
     // When size of str becomes 0, out has a 
@@ -106,7 +107,7 @@ void bullpgia::SmartGuesser::saveResults(){
 	numChar++;
  }
 }
-
+//zeroing everything to begin a new game
 void bullpgia::SmartGuesser::startNewGame(uint slength){
    i=-1;
    numChar=0;
@@ -121,6 +122,7 @@ void bullpgia::SmartGuesser::startNewGame(uint slength){
    guessVec.clear();
 	
 }
+//learn the results to improve for the next guess
 void bullpgia::SmartGuesser::learn(string reply){
     int sign= reply.find(',');
     bulls = stoi(reply.substr(0,sign));
